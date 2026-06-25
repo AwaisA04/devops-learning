@@ -33,3 +33,19 @@ cat ./-
 **learned**: 
 - using ./ is important when a file may contain symbols
 
+## Level 2 - 3:
+Challenge: locate --spaces in this filename-- file and read it
+
+**Solution**:
+Cat -- “--spaces in this filename–” 
+
+**explanation**:
+-- signals the end of options to the command, anything after will be taken as an argument
+
+**Password**:
+MNk8KNH3Usiio41PRUEoDFPqfxLPlSmx
+
+**learned**: 
+--
+
+
