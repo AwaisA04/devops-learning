@@ -34,7 +34,8 @@ cat ./-
 - using ./ is important when a file may contain symbols
 
 ## Level 2 - 3:
-Challenge: locate --spaces in this filename-- file and read it
+**Challenge**: 
+locate --spaces in this filename-- file and read it
 
 **Solution**:
 Cat -- “--spaces in this filename–” 
@@ -47,5 +48,48 @@ MNk8KNH3Usiio41PRUEoDFPqfxLPlSmx
 
 **learned**: 
 --
+
+## Level 3 - 4:
+**Challenge**: 
+password in hidden file
+
+**Solution**:
+ls -a inhere
+-a option displays hidden files
+
+**explanation**:
+-a option shows hidden files
+
+**Password**:
+2WmrDFRmJIq3IPxneAaMGhap0pFhF3NJ
+
+**learned**: 
+-a
+
+## Level 4 - 5:
+**Challenge**: 
+find human readable password in directory with files
+
+**Solution**:
+Cat ./-file07, jad the only human readable password
+
+**Password**:
+2WmrDFRmJIq3IPxneAaMGhap0pFhF3NJ
+
+## Level 5 - 6:
+**Challenge**: 
+find password that is in a file which is:
+Human readable
+1033 bytes in size
+Nt executable
+
+**Solution**:
+Maybehere07 directory had a file by the name .file2
+ls -la to display properties of the files, such as permissions and file size
+
+**Password**:
+HWasnPhtq9AVKe0dmk45nxy20cvUa6EG
+
+
 
 
