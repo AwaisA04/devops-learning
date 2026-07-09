@@ -54,8 +54,8 @@ MNk8KNH3Usiio41PRUEoDFPqfxLPlSmx
 password in hidden file
 
 **Solution**:
-ls -a inhere
--a option displays hidden files
+- ls -a inhere
+- a option displays hidden files
 
 **explanation**:
 -a option shows hidden files
@@ -84,8 +84,8 @@ Human readable
 Nt executable
 
 **Solution**:
-Maybehere07 directory had a file by the name .file2
-ls -la to display properties of the files, such as permissions and file size
+- Maybehere07 directory had a file by the name .file2
+- ls -la to display properties of the files, such as permissions and file size
 
 **Password**:
 HWasnPhtq9AVKe0dmk45nxy20cvUa6EG
@@ -98,9 +98,9 @@ Group bandit6
 Size 33 bytes
 
 **Solution**:
-Find / -group bandit6 -user bandit7 -size 33c 2>/dev/null
-Find [starting from] {option} … {option}          standardout the errors to the null folder 
-This gave the path to the file
+- Find / -group bandit6 -user bandit7 -size 33c 2>/dev/null
+- Find [starting from] {option} … {option}          standardout the errors to the null folder 
+- This gave the path to the file
 
 **Password**:
 c morbNTDkSW6jIlUc0ymOdMaLnOlFVAaj
@@ -121,14 +121,14 @@ dfwvzFQi4mU0wfNbFOe9RoWskMLg7eEc
 password on a line that only occurs once
 
 **Solution**:
-Uniq command compares lines adjacent to each other so sort needs to be used first
-Uniq by itself compares adjacent lines, and deletes the second line that is repeated and displays the line
+- Uniq command compares lines adjacent to each other so sort needs to be used first
+- Uniq by itself compares adjacent lines, and deletes the second line that is repeated and displays the line
 
-Use sort data.txt - this sorts the lines in order
-Repeated lines are all adjacent to each other
-Uniq -u displays only unrepeated line
-Use piping: output of command becomes input of another command, denoted by ‘|’
-Sort data.txt | uniq -u
+- Use sort data.txt - this sorts the lines in order
+- Repeated lines are all adjacent to each other
+- Uniq -u displays only unrepeated line
+- Use piping: output of command becomes input of another command, denoted by ‘|’
+- Sort data.txt | uniq -u
 
 **Password**:
 4CKMh1JI91bUIZZPXDqGanal4xvAg0JM
@@ -138,10 +138,10 @@ Sort data.txt | uniq -u
 password is stored in one of the few human readable strings, preceded by several “=” characters.
 
 **Solution**:
-Strings data.txt | grep “=”
-Strings data.txt : returns lines with all human readable strings
-Piping done
-Grep to search for “=”
+- Strings data.txt | grep “=”
+- Strings data.txt : returns lines with all human readable strings
+- Piping done
+- Grep to search for “=”
 
 **Password**:
 FGUW5ilLVJrxX9kMYMmlN4MgbpfMiqey
@@ -151,11 +151,11 @@ FGUW5ilLVJrxX9kMYMmlN4MgbpfMiqey
 data.txt contains base64 encoded data
 
 **Solution**:
-Cat data.txt | tr 'A-Ma-mN-Zn-z' 'N-Zn-zA-Ma-m'
-Tr command maps one set to its corresponding set
-tr [set1] [set2]
-One set can have multiple ranges, each range maps to corresponding range on the next set
-[A-Za-z] [a-zA-z]
+- Cat data.txt | tr 'A-Ma-mN-Zn-z' 'N-Zn-zA-Ma-m'
+- Tr command maps one set to its corresponding set
+- tr [set1] [set2]
+- One set can have multiple ranges, each range maps to corresponding range on the next set
+- [A-Za-z] [a-zA-z]
 
 **Password**:
 7x16WNeHIi5YkIhWsfFIqoognUTyj9Q4
