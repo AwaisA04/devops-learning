@@ -99,7 +99,9 @@ Size 33 bytes
 
 **Solution**:
 - Find / -group bandit6 -user bandit7 -size 33c 2>/dev/null
-- Find [starting from] {option} … {option}          standardout the errors to the null folder 
+  
+- Find [starting from] {option} … {option}       standardout the errors to the null folder
+  
 - This gave the path to the file
 
 **Password**:
