@@ -161,3 +161,20 @@ data.txt contains base64 encoded data
 
 **Password**:
 7x16WNeHIi5YkIhWsfFIqoognUTyj9Q4
+
+
+## Bandit Level 0 → 1
+
+**Challenge:** Locate the README file which holds the password.
+
+**Solution:**
+```bash
+ls
+cat readme
+```
+
+**Explanation:** `ls` lists all files in the current directory so I can see the README exists; `cat` then reads and prints its contents to the terminal.
+
+**Password:** [redacted — see note in README]
+
+**What I learned:** `ls` lists files in a directory, and `cat` is a powerful tool for reading file contents directly in the terminal.
