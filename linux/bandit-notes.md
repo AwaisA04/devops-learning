@@ -1,21 +1,20 @@
 Over the wire bandit
 
-## Level 0 - 1:
-**Challenge**: 
-Locate readme file which holds the password
+## Bandit Level 0 → 1
 
-**solution**:
+**Challenge:** Locate the README file which holds the password.
+
+**Solution:**
+```bash
 ls
 cat readme
+```
 
-**explanation**:
--ls lists all files in the directory, readme is located, so cat is used to read the contents of readme
+**Explanation:** `ls` lists all files in the current directory so I can see the README exists; `cat` then reads and prints its contents to the terminal.
 
-**Password**:
--ZjLjTmM6FvvyRnrb2rfNWOZOTa6ip5If
+**Password:** ZjLjTmM6FvvyRnrb2rfNWOZOTa6ip5If
 
-**learned**: 
--ls lists all files and that cat is a powerful tool to read contents of a file
+**What I learned:** `ls` lists files in a directory, and `cat` is a powerful tool for reading file contents directly in the terminal.
 
 ## Level 1 - 2:
 Challenge: locate dashed “-” file inside home directory
@@ -175,6 +174,6 @@ cat readme
 
 **Explanation:** `ls` lists all files in the current directory so I can see the README exists; `cat` then reads and prints its contents to the terminal.
 
-**Password:** [redacted — see note in README]
+**Password:** ZjLjTmM6FvvyRnrb2rfNWOZOTa6ip5If
 
 **What I learned:** `ls` lists files in a directory, and `cat` is a powerful tool for reading file contents directly in the terminal.
