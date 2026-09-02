@@ -16,164 +16,172 @@ cat readme
 
 **What I learned:** `ls` lists files in a directory, and `cat` is a powerful tool for reading file contents directly in the terminal.
 
-## Level 1 - 2:
-Challenge: locate dashed “-” file inside home directory
+## Bandit Level 1 → 2
 
-**Solution**:
-ls
-cat ./-
-
-**explanation**:
--doing cat ./- tells the terminal that - is a file and we want to read it, and that its not a symbol
-
-**Password**:
-263JGJPfgU6LtdEvgfWU1XP5yac29mFx
-
-**learned**: 
-- using ./ is important when a file may contain symbols
-
-## Level 2 - 3:
-**Challenge**: 
-locate --spaces in this filename-- file and read it
-
-**Solution**:
-Cat -- “--spaces in this filename–” 
-
-**explanation**:
--- signals the end of options to the command, anything after will be taken as an argument
-
-**Password**:
-MNk8KNH3Usiio41PRUEoDFPqfxLPlSmx
-
-**learned**: 
---
-
-## Level 3 - 4:
-**Challenge**: 
-password in hidden file
-
-**Solution**:
-- ls -a inhere
-- a option displays hidden files
-
-**explanation**:
--a option shows hidden files
-
-**Password**:
-2WmrDFRmJIq3IPxneAaMGhap0pFhF3NJ
-
-**learned**: 
--a
-
-## Level 4 - 5:
-**Challenge**: 
-find human readable password in directory with files
-
-**Solution**:
-Cat ./-file07, jad the only human readable password
-
-**Password**:
-2WmrDFRmJIq3IPxneAaMGhap0pFhF3NJ
-
-## Level 5 - 6:
-**Challenge**: 
-find password that is in a file which is:
-Human readable
-1033 bytes in size
-Nt executable
-
-**Solution**:
-- Maybehere07 directory had a file by the name .file2
-- ls -la to display properties of the files, such as permissions and file size
-
-**Password**:
-HWasnPhtq9AVKe0dmk45nxy20cvUa6EG
-
-## Level 6 - 7:
-**Challenge**: 
-challenge : find password stored somewhere on the server has following:
-User bandit7
-Group bandit6
-Size 33 bytes
-
-**Solution**:
-- Find / -group bandit6 -user bandit7 -size 33c 2>/dev/null
-  
-- Find [starting from] {option} … {option}       standardout the errors to the null folder
-  
-- This gave the path to the file
-
-**Password**:
-c morbNTDkSW6jIlUc0ymOdMaLnOlFVAaj
-
-## Level 7 - 8:
-**Challenge**:
-password stored next to “millionth” in data.txt
-
-**Solution**:
-Grep “millionth” data.txt
-Displays the line with millionth as well as the password
-
-**Password**:
-dfwvzFQi4mU0wfNbFOe9RoWskMLg7eEc
-
-## Level 8 - 9:
-**Challenge**: 
-password on a line that only occurs once
-
-**Solution**:
-- Uniq command compares lines adjacent to each other so sort needs to be used first
-- Uniq by itself compares adjacent lines, and deletes the second line that is repeated and displays the line
-
-- Use sort data.txt - this sorts the lines in order
-- Repeated lines are all adjacent to each other
-- Uniq -u displays only unrepeated line
-- Use piping: output of command becomes input of another command, denoted by ‘|’
-- Sort data.txt | uniq -u
-
-**Password**:
-4CKMh1JI91bUIZZPXDqGanal4xvAg0JM
-
-## Level 9 - 10:
-**Challenge**: 
-password is stored in one of the few human readable strings, preceded by several “=” characters.
-
-**Solution**:
-- Strings data.txt | grep “=”
-- Strings data.txt : returns lines with all human readable strings
-- Piping done
-- Grep to search for “=”
-
-**Password**:
-FGUW5ilLVJrxX9kMYMmlN4MgbpfMiqey
-
-## Level 10 - 11:
-**Challenge**: 
-data.txt contains base64 encoded data
-
-**Solution**:
-- Cat data.txt | tr 'A-Ma-mN-Zn-z' 'N-Zn-zA-Ma-m'
-- Tr command maps one set to its corresponding set
-- tr [set1] [set2]
-- One set can have multiple ranges, each range maps to corresponding range on the next set
-- [A-Za-z] [a-zA-z]
-
-**Password**:
-7x16WNeHIi5YkIhWsfFIqoognUTyj9Q4
-
-
-## Bandit Level 0 → 1
-
-**Challenge:** Locate the README file which holds the password.
+**Challenge:** Locate the dashed `-` file inside the home directory.
 
 **Solution:**
 ```bash
 ls
-cat readme
+cat ./-
 ```
 
-**Explanation:** `ls` lists all files in the current directory so I can see the README exists; `cat` then reads and prints its contents to the terminal.
+**Explanation:** Using `cat ./-` tells the terminal that `-` is a filename, not a flag/symbol, so it reads the file instead of misinterpreting it as an option.
 
-**Password:** ZjLjTmM6FvvyRnrb2rfNWOZOTa6ip5If
+**Password:** [redacted]
 
-**What I learned:** `ls` lists files in a directory, and `cat` is a powerful tool for reading file contents directly in the terminal.
+**What I learned:** Prefixing a filename with `./` is important when a file may start with a symbol that could otherwise be mistaken for a command option.
+
+---
+
+## Bandit Level 2 → 3
+
+**Challenge:** Locate the file named `--spaces in this filename--` and read it.
+
+**Solution:**
+```bash
+cat -- "--spaces in this filename--"
+```
+
+**Explanation:** `--` signals the end of options for the command; anything after it is treated as a literal argument, not a flag.
+
+**Password:** [redacted]
+
+**What I learned:** `--` is a general Unix convention for telling a command "stop parsing flags, treat the rest as arguments."
+
+---
+
+## Bandit Level 3 → 4
+
+**Challenge:** Find the password in a hidden file.
+
+**Solution:**
+```bash
+ls -a inhere
+```
+
+**Explanation:** The `-a` option shows hidden files (those starting with a `.`), which are otherwise excluded from a normal `ls` listing.
+
+**Password:** [redacted]
+
+**What I learned:** Hidden files start with a `.` and need `-a` to appear in a directory listing.
+
+---
+
+## Bandit Level 4 → 5
+
+**Challenge:** Find the human-readable password among several files in a directory.
+
+**Solution:**
+```bash
+cat ./-file07
+```
+
+**Explanation:** Of all the files in the directory, `-file07` was the only one containing human-readable text — the rest were binary/non-readable.
+
+**Password:** [redacted — ⚠️ double-check this, currently identical to Level 3→4's password]
+
+**What I learned:** Not all files in a directory are readable text — checking each one (or using `file` to check type first) is often necessary.
+
+---
+
+## Bandit Level 5 → 6
+
+**Challenge:** Find a file with these properties: human-readable, 1033 bytes in size, not executable.
+
+**Solution:**
+```bash
+ls -la
+cat ./maybehere07/.file2
+```
+
+**Explanation:** `ls -la` was used to inspect file sizes and permissions across the directory tree to narrow down which file matched all three properties, leading to `.file2` inside `maybehere07`.
+
+**Password:** [redacted]
+
+**What I learned:** `ls -la` is useful for comparing file sizes and permissions side-by-side when hunting for a file matching specific criteria.
+
+---
+
+## Bandit Level 6 → 7
+
+**Challenge:** Find a password stored somewhere on the server, owned by user `bandit7`, group `bandit6`, size 33 bytes.
+
+**Solution:**
+```bash
+find / -group bandit6 -user bandit7 -size 33c 2>/dev/null
+```
+
+**Explanation:** `find` searches from the given starting point (`/`) using the listed criteria (group, user, size); `2>/dev/null` redirects error output (e.g. permission denied messages) to null so only valid results are shown.
+
+**Password:** [redacted]
+
+**What I learned:** `find` can filter by ownership and exact size, and redirecting stderr with `2>/dev/null` keeps noisy permission errors out of the results.
+
+---
+
+## Bandit Level 7 → 8
+
+**Challenge:** Password is stored next to the word "millionth" in `data.txt`.
+
+**Solution:**
+```bash
+grep "millionth" data.txt
+```
+
+**Explanation:** `grep` searches the file for the given string and prints the matching line, which contains the password.
+
+**Password:** [redacted]
+
+**What I learned:** `grep` is a fast way to search large files for a known keyword instead of reading through manually.
+
+---
+
+## Bandit Level 8 → 9
+
+**Challenge:** Password is on the line that occurs only once in the file.
+
+**Solution:**
+```bash
+sort data.txt | uniq -u
+```
+
+**Explanation:** `uniq` only compares *adjacent* lines, so the file needs to be sorted first so repeated lines end up next to each other. `uniq -u` then prints only the lines that have no duplicates. The `|` pipes the sorted output directly into `uniq`.
+
+**Password:** [redacted]
+
+**What I learned:** `uniq` requires sorted input to work correctly, and piping (`|`) lets you chain a command's output directly into the next command's input.
+
+---
+
+## Bandit Level 9 → 10
+
+**Challenge:** Password is one of the few human-readable strings in the file, preceded by several `=` characters.
+
+**Solution:**
+```bash
+strings data.txt | grep "="
+```
+
+**Explanation:** `strings` extracts human-readable text from a file (useful for binary/mixed-content files), and piping into `grep "="` filters down to lines containing the `=` characters mentioned in the challenge.
+
+**Password:** [redacted]
+
+**What I learned:** `strings` is essential for pulling readable text out of binary or non-plain-text files.
+
+---
+
+## Bandit Level 10 → 11
+
+**Challenge:** `data.txt` contains base64-encoded... actually ROT13-encoded data (based on the solution used).
+
+**Solution:**
+```bash
+cat data.txt | tr 'A-Ma-mN-Zn-z' 'N-Zn-zA-Ma-m'
+```
+
+**Explanation:** `tr` maps characters from one set to a corresponding character in another set. Here it implements a ROT13 cipher — shifting each letter 13 places through the alphabet, with ranges wrapping (A-M ↔ N-Z, a-m ↔ n-z) to decode the text back to plain readable form.
+
+**Password:** [redacted]
+
+**What I learned:** `tr` can define multiple character ranges in one call, each range mapping to its corresponding range in the second set — useful for implementing simple substitution ciphers like ROT13.
