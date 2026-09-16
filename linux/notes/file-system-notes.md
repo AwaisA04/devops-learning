@@ -40,10 +40,10 @@ tail -f /var/log/auth.log
    Why it's useful: gives the size of a specific folder instead of relying on ls -lh to show the size of the full directory
 
 4. **`find . -name "*.txt"`** —
-   What it does:
-   Why it's useful:
+   What it does: searches through each directory for a similar pattern, in this case it looks for each file that contains '.txt'. You can replace the . to start from a specific path. Alternatively, you can add -type d to look for directories (find . -type d -name "demo")
+   Why it's useful: allows you to look through specific directories or the entire folder for files containing a pattern instead of manually searching directories to find what is needed.
 
-5. **`command`** —
-   What it does:
-   Why it's useful:
+5. **`wc -l <filename>`** —
+   What it does: tells you how many lines there are within a file
+   Why it's useful: allows you to quickly receive a numerical figure of a file wc nstead of manually looking thorugh to see if it has any content (can also use it as a path)
 
