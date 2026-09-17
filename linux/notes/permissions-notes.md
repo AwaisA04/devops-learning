@@ -4,13 +4,15 @@
 Create a file that the owner can read and write, while group members and others can only read.
 
 ## command
-'''bash
+
+'''text
 touch permissions.txt
 chmod 644 permissions.txt
 ls -l permissions.txt
 '''
 
 ## result
+
 ```text
 -rw-r--r--
 ```
