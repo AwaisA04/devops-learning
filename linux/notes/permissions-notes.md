@@ -5,11 +5,11 @@ Create a file that the owner can read and write, while group members and others 
 
 ## command
 
-'''text
+```bash
 touch permissions.txt
 chmod 644 permissions.txt
 ls -l permissions.txt
-'''
+```
 
 ## result
 
