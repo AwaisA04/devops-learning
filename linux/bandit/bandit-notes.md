@@ -57,10 +57,10 @@ cat -- "--spaces in this filename--"
 
 **Solution:**
 ```bash
-ls -a inhere
+ls -la inhere
 ```
 
-**Explanation:** The `-a` option shows hidden files (those starting with a `.`), which are otherwise excluded from a normal `ls` listing.
+**Explanation:** The `-la` option shows hidden files (those starting with a `.`), which are otherwise excluded from a normal `ls` listing.
 
 **Password:** 2WmrDFRmJIq3IPxneAaMGhap0pFhF3NJ
 
@@ -77,7 +77,7 @@ ls -a inhere
 cat ./-file07
 ```
 
-**Explanation:** Of all the files in the directory, `-file07` was the only one containing human-readable text — the rest were binary/non-readable.
+**Explanation:** Of all the files in the directory, `-file07` was the only one containing human-readable text, this was shown by the 'ASCII text' indicator — the rest were binary/non-readable.
 
 **Password:** 4oQYVPkxZOOEOO5pTW81FB8j8lxXGUQw
 
@@ -91,7 +91,9 @@ cat ./-file07
 
 **Solution:**
 ```bash
+cd inhere
 ls -la
+find . type -f -size 1033c ! -executable
 cat ./maybehere07/.file2
 ```
 
@@ -109,10 +111,12 @@ cat ./maybehere07/.file2
 
 **Solution:**
 ```bash
+cd /
 find / -group bandit6 -user bandit7 -size 33c 2>/dev/null
+cat ./var/lib/dpkg/info/bandit7.password
 ```
 
-**Explanation:** `find` searches from the given starting point (`/`) using the listed criteria (group, user, size); `2>/dev/null` redirects error output (e.g. permission denied messages) to null so only valid results are shown.
+**Explanation:** `find` searches from the given starting point (`/`) which searches the entire filesystem using the listed criteria (group, user, size); `2>/dev/null` redirects error output (e.g. permission denied messages) to null so only valid results are shown.
 
 **Password:** c morbNTDkSW6jIlUc0ymOdMaLnOlFVAaj
 
@@ -143,10 +147,10 @@ grep "millionth" data.txt
 
 **Solution:**
 ```bash
-sort data.txt | uniq -u
+cat data.txt | sort | uniq -u
 ```
 
-**Explanation:** `uniq` only compares *adjacent* lines, so the file needs to be sorted first so repeated lines end up next to each other. `uniq -u` then prints only the lines that have no duplicates. The `|` pipes the sorted output directly into `uniq`.
+**Explanation:** `cat` read the contents of the file, `uniq` only compares *adjacent* lines, so the file needs to be sorted first so repeated lines end up next to each other. `uniq -u` then prints only the lines that have no duplicates. The `|` pipes the sorted output directly into `uniq`.
 
 **Password:** 4CKMh1JI91bUIZZPXDqGanal4xvAg0JM
 
@@ -177,11 +181,93 @@ strings data.txt | grep "="
 
 **Solution:**
 ```bash
-cat data.txt | tr 'A-Ma-mN-Zn-z' 'N-Zn-zA-Ma-m'
+cat data.txt | base64 -d 
+or
+base64 -d data.txt
 ```
 
-**Explanation:** `tr` maps characters from one set to a corresponding character in another set. Here it implements a ROT13 cipher — shifting each letter 13 places through the alphabet, with ranges wrapping (A-M ↔ N-Z, a-m ↔ n-z) to decode the text back to plain readable form.
+**Explanation:** `base64` is the command of working with base64 and `-d` is the command to decode the file in base64
 
 **Password:** dtR173fZKb0RRsDFSGsg2RWnpNVj3qRr
 
-**What I learned:** `tr` can define multiple character ranges in one call, each range mapping to its corresponding range in the second set — useful for implementing simple substitution ciphers like ROT13.
+**What I learned:** `-d` is essential for working with base64 as it decodes the file.
+
+## Bandit Level 11 → 12
+
+**Challenge:** password for the next level is stored in the file data.txt, where all lowercase (a-z) and uppercase (A-Z) letters have been rotated by 13 positions
+
+**Solution:**
+
+```bash
+cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m'
+```
+**Explanation**: tr translates characters from one set to a corresponding character in another set. Here it implements a ROT13 cipher — shifting each letter 13 places through the alphabet, with ranges wrapping (A-M ↔ N-Z, a-m ↔ n-z) to decode the text back to plain readable form.
+
+**Password**: GROozWPO8QyN0mGrjUkID0WCYkZiQxrN
+
+**What I learned:**: tr can define multiple character ranges in one call, each range mapping to its corresponding range in the second set — useful for implementing simple substitution ciphers like ROT13.
+
+
+## Bandit Level 12 → 13
+
+**Challenge:** password is in a hexdump, has been repeatedly comrpessed
+
+**Solution:** 
+
+```bash
+mkdir /tmp/bandit122
+cp data.txt /tmp/bandit122
+cd /tmp/bandit12
+xxd -r data.txt data
+file data
+mv data data.gz
+gzip -d data.gz
+file data
+```
+**Explanation**: In Bandit Level 12 → 13, I learned how to work with files that have been converted into a hexadecimal dump and then compressed multiple times. I used xxd -r to reverse the hex dump back into a file, and then used the file command to identify what type of compression or archive I was dealing with
+
+**What I learned:** I learned how to use commands such as gzip, bzip2, and tar to decompress or extract files, repeating the process until I reached the final text file containing the password. This taught me how to identify file types and work with different compression formats in Linux.
+
+## Bandit Level 13 → 14
+
+**Challenge:** The challenge was to send the Bandit 14 password to a service running on port 30000 using Netcat (`nc`) and receive the password for Bandit 15.
+
+
+**Solution:**
+```bash
+cat sshkey.private
+exit
+touch ~/sshkey.private
+nano ~/sshkey.private ## paste the key
+ls -l ~/sshkey.private
+chmod 600 ~/sshkey.private
+ssh -i ~/sshkey.private -p 2220 bandit14@bandit.labs.overthewire.org
+whoami
+```
+
+**Explanation** In Bandit Level 13 → 14, I was given an SSH private key called sshkey.private instead of a password. The aim was to use this private key to authenticate as the bandit14 user. Because OverTheWire prevents SSH connections between Bandit accounts from inside the server, I had to copy the private key to my own computer and then connect to bandit14 from my local Ubuntu terminal using SSH. The -i option tells SSH which private key to use, while -p 2220 specifies the port used by the Bandit server.
+
+**What I learned:** I learned that SSH can authenticate users using a private key instead of a password. I also learned how to use the -i option with SSH to specify an identity file and how to use -p to specify a non-standard SSH port. I learned that files created with touch are empty until content is added, and that SSH private keys need to be stored correctly and given appropriate permissions using chmod 600. This level also helped me understand the difference between working inside a remote Linux server and using my own local terminal.
+
+## Bandit Level 14 → 15
+**Challenge:** The challenge was to find the Bandit 14 password and submit it to a service running on the local machine at port 30000. The service would check the password and return the password for Bandit 15 if it was correct.
+
+**Solution:**
+```bash
+cat /etc/bandit_pass/bandit14
+nc localhost 30000
+## paste password in
+```
+**Explanation:** The challenge involved connecting to a service running on localhost on port 30000 using Netcat (nc). I retrieved the Bandit 14 password and entered it into the service, which returned the password for Bandit 15.
+
+**What I learned:** I learned how to use Netcat to communicate with a network service through a specific port. I also learned how localhost refers to the current machine and how ports are used to access different network services.
+
+## Bandit Level 15 → 16
+
+## Bandit Level 16 → 17
+
+## Bandit Level 17 → 18
+
+## Bandit Level 18 → 19
+
+## Bandit Level 19 → 20

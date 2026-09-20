@@ -25,15 +25,15 @@ devops-learning-linux/
 
 | Task | Status |
 |---|---|
-| Environment setup | ☐ |
-| File system navigation notes | ☐ |
-| Permissions & ownership | ☐ |
-| Process management | ☐ |
-| Text processing | ☐ |
-| Bandit Level 1–10 | ☐ |
+| Environment setup | ✅ |
+| File system navigation notes | ✅ |
+| Permissions & ownership | ✅ |
+| Process management | ✅ |
+| Text processing | ✅ |
+| Bandit Level 1–10 | ✅ |
 | Bandit Level 11–20 | ☐ |
-| LinkedIn Post 1 | ☐ |
-| LinkedIn Post 2 | ☐ |
+| LinkedIn Post 1 | ✅ |
+| LinkedIn Post 2 | ✅ |
 | LinkedIn Post 3 | ☐ |
 
 ## 🐧 What I Learned
