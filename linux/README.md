@@ -13,9 +13,8 @@ devops-learning-linux/
 │   ├── process-management.md  # process monitoring/killing
 │   └── text-processing.md     # grep, awk, sed
 ├── bandit/
-│   ├── README.md               # index of all levels
-│   ├── level-00-01.md
-│   ├── level-01-02.md
+│   ├── bandit-notes.md
+│   ├── debugging-notes.md
 │   └── screenshots/
 └── scripts/
     └── hello.sh
@@ -36,19 +35,8 @@ devops-learning-linux/
 | LinkedIn Post 2 | ✅ |
 | LinkedIn Post 3 | ✅ |
 
-## 🐧 What I Learned
 
-_A running summary — add 2-3 sentences per week as you go, so the final "consolidate learning" step in Week 3 isn't starting from scratch._
-
-- **Week 1:**
-- **Week 2:**
-- **Week 3:**
-
-## 🔗 Links
-
-- Bandit wargame: https://overthewire.org/wargames/bandit/
-- Bandit level details: [`bandit/README.md`](./bandit/README.md)
 
 ## ⚠️ Note on passwords
 
-Bandit passwords are intentionally **not** committed to this public repo (they're per-session anyway and there's no benefit to leaking them). Each level file marks the password as `[redacted]`.
+Bandit passwords are intentionally **not** committed to this public repo (they're per-session anyway and there's no benefit to leaking them). 
