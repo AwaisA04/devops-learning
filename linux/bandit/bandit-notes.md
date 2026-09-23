@@ -255,7 +255,7 @@ whoami
 **Solution:**
 ```bash
 cat /etc/bandit_pass/bandit14
-nc localhost 30000
+aaWecNkG4FhxJQxz07uiwzVP6bJiYS65
 ## paste password in
 ```
 **Explanation:** The challenge involved connecting to a service running on localhost on port 30000 using Netcat (nc). I retrieved the Bandit 14 password and entered it into the service, which returned the password for Bandit 15.
@@ -263,11 +263,64 @@ nc localhost 30000
 **What I learned:** I learned how to use Netcat to communicate with a network service through a specific port. I also learned how localhost refers to the current machine and how ports are used to access different network services.
 
 ## Bandit Level 15 → 16
+**Challenge:** The challenge was to connect to a service running on localhost at port 30001 and submit the Bandit 15 password. Unlike the previous level, this service required an SSL/TLS encrypted connection.
+**Solution:**
+```bash
+whoami
+cat /etc/bandit_pass/bandit15 ### copy and paste password into the next command to recieve password for bandit 16
+openssl s_client -connect localhost:30001
+```
+**Explanation:** I used openssl s_client -connect localhost:30001 to establish a secure connection to the service. I then entered the Bandit 15 password, and the service returned the password for Bandit 16.
+
+**What I learned:** to create an SSL/TLS connection to a network service. I also learned that some services require encrypted connections rather than a standard Netcat connection.
 
 ## Bandit Level 16 → 17
+**Challenge:** The challenge was to scan ports 31000–32000 and find the one running an SSL service that accepted the Bandit 16 password. After connecting to the correct port, the service provided an SSH private key that could be used to log into Bandit 17.
 
+**Solution:**
+```bash
+nmap -sV -p 31000-32000 localhost
+openssl s_client -connect localhost:31790
+nano ~/bandit17_keyy
+chmod 600 ~/bandit17_key
+ssh bandit16@bandit.labs.overthewire.org -p 2220
+```
+
+**Explanation:** I used nmap to scan the available ports and identified port 31790 as the relevant SSL service. I then used openssl s_client to connect securely to the service and entered the Bandit 16 password, which returned an SSH private key. I saved the key locally, changed its permissions with chmod 600, and used it to connect to Bandit 17.
+
+**What I learned:** I learned how to scan ports with nmap, connect to an SSL service using OpenSSL, and use an SSH private key for authentication. I also learned why private keys need secure file permissions and why SSH connections must sometimes be made from the local machine.
 ## Bandit Level 17 → 18
+**Challenge:** The goal was to find the password for Bandit 18. There were two files, passwords.old and passwords.new, and the password was the only line that had changed between them.
+**Solution:**
+```bash
+ls 
+diff passwords.old passwords.new
+```
+**Explanation:** I used the diff command to compare the two files:
 
+diff passwords.old passwords.new
+
+This showed the difference between the files, allowing me to identify the changed line. The changed line was the password for Bandit 18.
+**What I learned:** I learned how to use diff to compare the contents of two files and identify changes. I also learned how comparing files can be useful for finding specific information efficiently.
 ## Bandit Level 18 → 19
-
+**Challenge:** The challenge was to log in as Bandit 18 and find the password for Bandit 19. However, the shell was configured to immediately log me out, so I had to find another way to access the readme file.
+**Solution:**
+```bash
+ssh bandit18@bandit.labs.overthewire.org -p 2220 cat readme
+```
+**Explanation:** Instead of opening an interactive SSH session, I used SSH to run the cat readme command directly on the Bandit 18 server. This allowed me to read the file before the shell could log me out and retrieve the password for Bandit 19.
+**What I learned:** I learned that SSH can be used to execute commands remotely without opening an interactive shell. I also learned how this can be useful when a user's shell prevents normal login access.
 ## Bandit Level 19 → 20
+
+**Challenge:** The goal was to find the password for Bandit 20. The bandit20-do program allowed me to execute commands as the bandit20 user, so I needed to use it to access the Bandit 20 password file.
+
+**Solution:** 
+```bash
+ls
+./bandit20-do
+./bandit20-do cat /etc/bandit_pass/bandit20
+```
+
+**Explanation:** I used `./bandit20-do cat /etc/bandit_pass/bandit20.` The `bandit20-do` program ran the cat command with the permissions of the Bandit 20 user, allowing me to read the password file and retrieve the password for the next level.
+
+**What I learned:** I learned how executables can be used to run commands with another user's permissions. I also learned how Linux file permissions and user privileges control access to sensitive files.
